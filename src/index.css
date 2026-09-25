@@ -1,30 +1,37 @@
 :root {
---paper: #f2f4f5;
---ink: #18222c;
---steel: #5a6673;
---brass: #a67c2e;
---line: #d9dee2;
---panel: #1e2a35;
---panel-text: #e8ecef;
-color-scheme: light;
-font: 17px/1.5 system-ui, -apple-system, 'Segoe UI', Roboto,
-sans-serif;
-color: var(--ink);
-background: var(--paper);
--webkit-font-smoothing: antialiased;
-text-rendering: optimizeLegibility;
+	--paper: #111417;
+	--paper-soft: #171b1f;
+	--ink: #edf0ee;
+	--steel: #9aa5a8;
+	--brass: #c79745;
+	--brass-bright: #e1b866;
+	--line: #30383d;
+	--line-soft: #252c30;
+	--panel: #0b0e10;
+	--panel-text: #e8ecef;
+	--green: #8cae91;
+	color-scheme: dark;
+	font: 17px/1.5 system-ui, -apple-system, 'Segoe UI', Roboto,
+		sans-serif;
+	color: var(--ink);
+	background: var(--paper);
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
 }
 * {
 box-sizing: border-box;
 
 }
 body {
-margin: 0;
+	margin: 0;
+	background:
+		radial-gradient(circle at 88% 0%, rgb(199 151 69 / 0.08), transparent 28rem),
+		var(--paper);
 }
 h1,
 h2,
 h3 {
-font-weight: 700;
+	font-weight: 700;
 }
 :focus-visible {
 outline: 2px solid var(--brass);

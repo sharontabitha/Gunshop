@@ -16,8 +16,9 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 14px 24px;
-  background: var(--paper);
+  padding: 16px 24px;
+  background: rgb(17 20 23 / 0.92);
+  backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
   position: sticky;
   top: 0;
@@ -30,6 +31,14 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink);
+}
+
+.brand::before {
+  content: '///';
+  margin-right: 10px;
+  color: var(--brass);
+  font-size: 0.75em;
+  letter-spacing: -0.12em;
 }
 
 .nav {
@@ -48,7 +57,7 @@
 }
 
 .nav-link:hover {
-  color: var(--ink);
+  color: var(--brass-bright);
 }
 
 .nav-link.active {
@@ -58,18 +67,37 @@
 
 .main {
   width: 100%;
-  max-width: 760px;
+  max-width: 920px;
   margin: 0 auto;
   padding: 0 24px 64px;
 }
 
 .masthead,
 .page {
-  padding: 64px 0 40px;
+  padding: 76px 0 44px;
 }
 
 .masthead {
   border-bottom: 1px solid var(--line);
+}
+
+.masthead::before {
+  content: 'EST. 1987  /  FIELD-TESTED INVENTORY';
+  display: block;
+  margin-bottom: 18px;
+  color: var(--brass);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.eyebrow {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--brass);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
 }
 
 .masthead h1,
@@ -84,19 +112,73 @@
   color: var(--steel);
   max-width: 46ch;
   margin: 0;
+  font-size: 1.05rem;
+}
+
+.history,
+.contact-list {
+  display: grid;
+  gap: 0;
+  margin-top: 48px;
+  border-top: 1px solid var(--line);
+}
+
+.history-item,
+.contact-item {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 24px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.history-year,
+.contact-label {
+  color: var(--brass);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.history-item h2 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+}
+
+.history-item p,
+.contact-item span:not(.contact-label),
+.contact-item strong,
+.contact-item a {
+  display: block;
+  margin: 0;
+  color: var(--steel);
+}
+
+.contact-item strong,
+.contact-item a {
+  margin-bottom: 5px;
+  color: var(--ink);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.contact-item a:hover {
+  color: var(--brass-bright);
 }
 
 .list-head {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  padding: 32px 0 8px;
+  padding: 34px 0 14px;
 }
 
 .list-head h2 {
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .count {
@@ -104,6 +186,95 @@
   font-size: 0.9rem;
 }
 
+.count::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin: 0 8px 1px 0;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 10px rgb(140 174 145 / 0.6);
+}
+
+.catalog-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 170px;
+  gap: 10px;
+  padding: 26px 0 0;
+}
+
+.search-field,
+.filter-field {
+  display: flex;
+  align-items: center;
+  min-height: 46px;
+  border: 1px solid var(--line);
+  background: var(--paper-soft);
+}
+
+.search-field:focus-within,
+.filter-field:focus-within {
+  border-color: var(--brass);
+  box-shadow: 0 0 0 3px rgb(199 151 69 / 0.12);
+}
+
+.search-icon {
+  padding-left: 14px;
+  color: var(--brass);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.search-field input,
+.filter-field select {
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  padding: 0 14px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+}
+
+.search-field input {
+  padding-left: 10px;
+}
+
+.search-field input::placeholder {
+  color: var(--steel);
+}
+
+.filter-field select {
+  cursor: pointer;
+}
+
+.filter-field option {
+  background: var(--paper-soft);
+  color: var(--ink);
+}
+
+.empty-state {
+  margin: 0;
+  padding: 48px 20px;
+  border: 1px dashed var(--line);
+  color: var(--steel);
+  text-align: center;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 .stock {
   list-style: none;
   margin: 0;
@@ -111,6 +282,18 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 16px;
+}
+
+@media (max-width: 560px) {
+  .catalog-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .history-item,
+  .contact-item {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
 }
 
 .card {
@@ -122,16 +305,20 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding: 0 0 14px;
-  background: #fff;
+  padding: 0 0 16px;
+  background: linear-gradient(145deg, #20262a, #171b1f);
   border: 1px solid var(--line);
   font: inherit;
   text-align: left;
   cursor: pointer;
+  color: var(--ink);
+  transition: border-color 260ms ease, transform 260ms ease, box-shadow 260ms ease;
 }
 
 .card-btn:hover {
   border-color: var(--brass);
+  box-shadow: 0 14px 30px rgb(0 0 0 / 0.22);
+  transform: translateY(-3px);
 }
 
 .card-img {
@@ -139,6 +326,8 @@
   height: auto;
   margin-bottom: 10px;
   border-bottom: 1px solid var(--line);
+  background: #d4d7d4;
+  filter: saturate(0.8) contrast(1.05);
 }
 
 .card .name,
@@ -150,10 +339,11 @@
 .name {
   font-size: 1.2rem;
   font-weight: 700;
+  color: var(--ink);
 }
 
 .price {
-  color: var(--brass);
+  color: var(--brass-bright);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
@@ -168,7 +358,23 @@
   padding: 0 0 20px;
   border: 1px solid var(--line);
   color: var(--ink);
-  background: var(--paper);
+  background: var(--paper-soft);
+  box-shadow: 0 24px 80px rgb(0 0 0 / 0.5);
+}
+
+.popup[open] {
+  animation: popup-in 240ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes popup-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .popup::backdrop {
@@ -199,23 +405,26 @@
 .popup-close {
   margin-top: 20px;
   padding: 8px 18px;
-  border: 1px solid var(--ink);
-  background: none;
+  border: 1px solid var(--brass);
+  background: var(--brass);
+  color: #17130d;
+  font-weight: 700;
   font: inherit;
   cursor: pointer;
 }
 
 .popup-close:hover {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--brass-bright);
+  color: #17130d;
 }
 
 .footer {
   margin-top: auto;
-  padding: 20px 24px;
+  padding: 24px;
   text-align: center;
   background: var(--panel);
   color: var(--panel-text);
+  border-top: 1px solid var(--line-soft);
 }
 
 .footer p {
