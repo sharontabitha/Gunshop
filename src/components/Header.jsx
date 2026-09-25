@@ -1,6 +1,6 @@
 const NAV = ['Catalog', 'About', 'Contact']
 
-function Header({ tab, onTab }) {
+function Header({ tab, onTab, theme, onToggleTheme, cartCount, onOpenCart }) {
   return (
     <header className="header">
       <span className="brand display">The Iron Vault</span>
@@ -16,6 +16,14 @@ function Header({ tab, onTab }) {
           </button>
         ))}
       </nav>
+      <div className="header-actions">
+        <button className="theme-toggle" type="button" onClick={onToggleTheme} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}>
+          {theme === 'dark' ? 'Light' : 'Dark'}
+        </button>
+        <button className="cart-button" type="button" onClick={onOpenCart} aria-label={`Open cart with ${cartCount} items`}>
+          Cart <span>{cartCount}</span>
+        </button>
+      </div>
     </header>
   )
 }
