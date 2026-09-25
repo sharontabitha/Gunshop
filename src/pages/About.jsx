@@ -7,8 +7,14 @@ function About() {
 				The Iron Vault began in 1987 as a small workbench and a promise: every piece
 				on the wall should earn its place there.
 			</p>
+			<div className="about-signal">
+				<div><strong>38</strong><span>years of<br />craft</span></div>
+				<div><strong>12</strong><span>carefully<br />selected pieces</span></div>
+				<div><strong>01</strong><span>standard:<br />trust</span></div>
+			</div>
 			<div className="history">
 				<article className="history-item">
+					<span className="history-index">01</span>
 					<span className="history-year">1987</span>
 					<div>
 						<h2>The first bench</h2>
@@ -16,6 +22,7 @@ function About() {
 					</div>
 				</article>
 				<article className="history-item">
+					<span className="history-index">02</span>
 					<span className="history-year">2004</span>
 					<div>
 						<h2>A vault with a wider door</h2>
@@ -23,6 +30,7 @@ function About() {
 					</div>
 				</article>
 				<article className="history-item">
+					<span className="history-index">03</span>
 					<span className="history-year">Today</span>
 					<div>
 						<h2>Less noise, better hardware</h2>
@@ -30,6 +38,13 @@ function About() {
 					</div>
 				</article>
 			</div>
+			<section className="principles">
+				<div>
+					<span className="eyebrow">THE VAULT STANDARD</span>
+					<h2 className="display">Good hardware. Clear answers.</h2>
+				</div>
+				<p>We keep the collection focused, the information honest, and every conversation grounded in responsible ownership.</p>
+			</section>
 		</div>
 	)
 }

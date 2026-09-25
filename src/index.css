@@ -18,6 +18,21 @@
 	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;
 }
+
+:root[data-theme='light'] {
+	--paper: #f2f0e9;
+	--paper-soft: #fffdf8;
+	--ink: #202521;
+	--steel: #65706b;
+	--brass: #8b6425;
+	--brass-bright: #a8782e;
+	--line: #d8d4c8;
+	--line-soft: #e6e1d6;
+	--panel: #202522;
+	--panel-text: #f1f0e8;
+	--green: #527b5d;
+	color-scheme: light;
+}
 * {
 box-sizing: border-box;
 
@@ -26,6 +41,12 @@ body {
 	margin: 0;
 	background:
 		radial-gradient(circle at 88% 0%, rgb(199 151 69 / 0.08), transparent 28rem),
+		var(--paper);
+}
+
+:root[data-theme='light'] body {
+	background:
+		radial-gradient(circle at 88% 0%, rgb(139 100 37 / 0.08), transparent 28rem),
 		var(--paper);
 }
 h1,

@@ -11,13 +11,24 @@ import './App.css'
 function App() {
 	const [tab, setTab] = useState('Catalog')
 	const [theme, setTheme] = useState(() => localStorage.getItem('iron-vault-theme') || 'dark')
-	const [cartItems, setCartItems] = useState([])
+	const [cartItems, setCartItems] = useState(() => {
+		try {
+			return JSON.parse(localStorage.getItem('iron-vault-cart')) || []
+		} catch {
+			return []
+		}
+	})
 	const [isCartOpen, setIsCartOpen] = useState(false)
+	const [toast, setToast] = useState('')
 
 	useEffect(() => {
 		document.documentElement.dataset.theme = theme
 		localStorage.setItem('iron-vault-theme', theme)
 	}, [theme])
+
+	useEffect(() => {
+		localStorage.setItem('iron-vault-cart', JSON.stringify(cartItems))
+	}, [cartItems])
 
 	const addToCart = (gun) => {
 		setCartItems((items) => {
@@ -30,6 +41,8 @@ function App() {
 			return [...items, { ...gun, quantity: 1 }]
 		})
 		setIsCartOpen(true)
+		setToast(`${gun.name} added to cart`)
+		window.setTimeout(() => setToast(''), 2200)
 	}
 
 	const changeQuantity = (name, quantity) => {
@@ -66,6 +79,7 @@ function App() {
 				onChangeQuantity={changeQuantity}
 				onRemove={(name) => changeQuantity(name, 0)}
 			/>
+			{toast && <div className="toast" role="status">{toast}</div>}
 		</div>
 	)
 }
