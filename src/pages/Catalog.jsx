@@ -7,6 +7,12 @@ function Catalog({ guns, onAddToCart }) {
 	const [maxPrice, setMaxPrice] = useState('All')
 	const [sortBy, setSortBy] = useState('featured')
 	const [isFilterOpen, setIsFilterOpen] = useState(false)
+	const toggleSort = (field) => {
+		setSortBy((currentSort) => {
+			if (field === 'name') return currentSort === 'name-asc' ? 'name-desc' : 'name-asc'
+			return currentSort === 'price-low' ? 'price-high' : 'price-low'
+		})
+	}
 	const gunTypes = ['All', ...new Set(guns.map((gun) => gun.type))]
 	const normalizedQuery = query.trim().toLowerCase()
 	const filteredGuns = guns.filter((gun) => {
@@ -20,6 +26,8 @@ function Catalog({ guns, onAddToCart }) {
 	const sortedGuns = [...filteredGuns].sort((firstGun, secondGun) => {
 		if (sortBy === 'price-low') return firstGun.price - secondGun.price
 		if (sortBy === 'price-high') return secondGun.price - firstGun.price
+		if (sortBy === 'name-asc') return firstGun.name.localeCompare(secondGun.name)
+		if (sortBy === 'name-desc') return secondGun.name.localeCompare(firstGun.name)
 		return guns.indexOf(firstGun) - guns.indexOf(secondGun)
 	})
 
@@ -72,14 +80,27 @@ function Catalog({ guns, onAddToCart }) {
 										<option value="2000">Under $2,000</option>
 									</select>
 								</label>
-								<label className="filter-field">
+								<div className="filter-field">
 									<span>Sort</span>
-									<select value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
-										<option value="featured">Featured order</option>
-										<option value="price-low">Price: low to high</option>
-										<option value="price-high">Price: high to low</option>
-									</select>
-								</label>
+									<div className="sort-toggles">
+										<button
+											type="button"
+											className={sortBy.startsWith('name-') ? 'sort-toggle is-active' : 'sort-toggle'}
+											aria-pressed={sortBy.startsWith('name-')}
+											onClick={() => toggleSort('name')}
+										>
+											Name {sortBy === 'name-desc' ? 'Z-A' : 'A-Z'}
+										</button>
+										<button
+											type="button"
+											className={sortBy.startsWith('price-') ? 'sort-toggle is-active' : 'sort-toggle'}
+											aria-pressed={sortBy.startsWith('price-')}
+											onClick={() => toggleSort('price')}
+										>
+											Price {sortBy === 'price-high' ? 'high-low' : 'low-high'}
+										</button>
+									</div>
+								</div>
 							</div>
 						)}
 					</div>

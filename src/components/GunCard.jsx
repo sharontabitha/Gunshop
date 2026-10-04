@@ -14,6 +14,9 @@ function GunCard({ gun, onAddToCart }) {
         <span className="price">${gun.price.toLocaleString()}</span>
         <span className="card-action">View details</span>
       </button>
+      <button className="card-add-button" type="button" onClick={() => onAddToCart(gun)}>
+        Add to cart
+      </button>
 
       <dialog
         className="popup"
